@@ -1,5 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/signup.dart';
+import 'package:page_transition/page_transition.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.yellow,
       ),
       home: const SplashScreen(),
     );
@@ -28,19 +30,14 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      // splash: Column(
-      //   children: [
-      //     Image.asset('images/1.png'),
-      //     const Text('My app',
-      //         style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
-      //   ],
-      splash: Image.asset('images/1.png'),
-      backgroundColor: Colors.red,
+      splash: Image.asset('images/SplashImg.png'),
+      backgroundColor: Colors.white,
       nextScreen: const LoginPage(),
-      splashIconSize: 400,
-      duration: 400,
+      splashIconSize: 1000,
+      duration: 1000,
       splashTransition: SplashTransition.fadeTransition,
       animationDuration: const Duration(seconds: 1),
+      pageTransitionType: PageTransitionType.fade,
     );
   }
 }
@@ -59,7 +56,7 @@ class LoginPage extends StatelessWidget {
           padding: const EdgeInsets.all(32),
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("images/1.png"), fit: BoxFit.cover),
+                image: AssetImage("images/SplashImg.png"), fit: BoxFit.cover),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,22 +90,37 @@ class LoginPage extends StatelessWidget {
               ),
               Column(
                 children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xffffed00),
-                      foregroundColor: const Color(0xffD9D9D9),
-                      minimumSize: const Size(328, 48),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24), // <-- Radius
-                      ),
-                    ),
-                    child: const Text(
-                      '가입하기',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
+                  Container(
+                    color: Colors.amber,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return const SignupPage();
+                              },
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xffffed00),
+                          foregroundColor: const Color(0xffD9D9D9),
+                          minimumSize: const Size(328, 48),
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(24), // <-- Radius
+                          ),
+                        ),
+                        child: const Text(
+                          '가입하기',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -120,7 +132,8 @@ class LoginPage extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
-                          color: Color(0xffFFFFFF),
+                          // color: Color(0xffFFFFFF),
+                          color: Colors.black,
                         ),
                       ),
                       TextButton(
@@ -130,7 +143,8 @@ class LoginPage extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
-                            color: Color(0xffFFFFFF),
+                            // color: Color(0xffFFFFFF),
+                            color: Colors.red,
                           ),
                         ),
                       )
